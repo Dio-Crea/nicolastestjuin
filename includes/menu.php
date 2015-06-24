@@ -1,7 +1,7 @@
 
 <ul id="menu-deroulant">
     <li>
-        <a href="#">Accueil</a>		
+        <a href="./index.php">Accueil</a>		
     </li>
 
     <li>Catégories
@@ -19,11 +19,11 @@
     </li>
     
     <li>
-        <a href="#">Nous Contacter</a>		
+        <a href="./contact.php">Nous Contacter</a>		
     </li>
     
     <li>
-        <a href="#">Espace Client</a>		
+        <a href="./espaceclient.php">Espace Client</a>		
     </li>
 </ul>
 
