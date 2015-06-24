@@ -6,7 +6,7 @@ if(isset($_POST['lelogin'])&& isset($_POST['lepass'])){
     $lemdp = htmlspecialchars(strip_tags($_POST['lepass'],ENT_QUOTES));	
     $recup_util = mysqli_query($mysqli,"SELECT * FROM utilisateur WHERE lelogin='$lelogin' AND lepass='$lemdp'; ") or die("Erreur: ".mysqli_error($mysqli));
 	 
-	 
+	  
 	 if(mysqli_num_rows($recup_util)){
         $recup_tab = mysqli_fetch_assoc($recup_util);
 		$_SESSION['clef_unique']=  session_id();
