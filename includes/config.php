@@ -4,7 +4,7 @@ define("DB_USER", "root");
 define("DB_MDP", "");
 define("DB_NAME", "nicolastestjuin");
 
-define("CHEMIN_RACINE", "http://localhost/nicolastestjuin/");
+define("CHEMIN_RACINE", "http://localhost/Nicolastestjuin/");
 
 
 $dossier_ori = "images/originales/";
