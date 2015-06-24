@@ -7,9 +7,9 @@ define("DB_NAME", "nicolastestjuin");
 define("CHEMIN_RACINE", "http://localhost/Nicolastestjuin/");
 
 
-$dossier_ori = "images/originales/";
-$dossier_gd = "images/affichees/"; 
-$dossier_mini = "images/miniatures/"; 
+$dossier_ori = "./images/originales/";
+$dossier_gd = "./images/affichees/"; 
+$dossier_mini = "./images/miniatures/"; 
 
 $grande_large = 900; // taille maximale en largeur
 $grande_haute = 720; // taille maximale en hauteur
