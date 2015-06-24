@@ -2,11 +2,12 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link type="text/css" rel="stylesheet" href="css/style.css" />
         <title></title>
     </head>
     <body>
         <?php
-        // put your code here
+        require_once 'includes/menu.php';
         ?>
     </body>
 </html>
