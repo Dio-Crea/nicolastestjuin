@@ -11,7 +11,7 @@ $select_query=mysqli_query($mysqli,"SELECT p.*, u.lenom as ulenom, GROUP_CONCAT(
 
         GROUP BY p.id
         ORDER BY p.id DESC
-       LIMIT $limit_start, $pagination ;
+       LIMIT 20 ;
     ")
 ?>
 <h2>Bienvenue sur Telepro-photos.fr</h2> 
@@ -37,15 +37,7 @@ while($ligne = mysqli_fetch_assoc($select_query)){
    
 }
 
-echo "<div id='pagination'>" .'<p>Page :';
-		// Boucle sur les pages
-		for ($i = 1 ; $i <= $nb_pages ; $i++) {
-		if ($i == $page )
-			echo " $i";
-		else
-			echo " <a href=\"?page=$i\">$i</a> ";
-		}
-		echo ' </p>'."</div>";?>
+?>
 <?php
 require_once 'includes/footer.php';
 ?>

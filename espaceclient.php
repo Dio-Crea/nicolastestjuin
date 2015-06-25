@@ -128,7 +128,7 @@ if(isset($_POST['letitre'])&&isset($_FILES['lefichier'])){
             }
             
         }else{
-            echo 'Erreur lors de la création des images redimenssionnÃ©es';
+            echo 'Erreur lors de la création des images redimenssionnages';
         }
         
     }    
@@ -229,7 +229,7 @@ $recup_section = mysqli_query($mysqli, $sql);
                      </p>";
                  echo "</div>";
                }  //Nb d'enregistrement total
-$nb_total = mysqli_query($mysqli,'SELECT COUNT(*) AS nb_total FROM photo WHERE utilisateur_id=2 ');
+$nb_total = mysqli_query($mysqli,"SELECT COUNT(*) AS nb_total FROM photo WHERE utilisateur_id=".$_SESSION['id']);
 $nb_total = mysqli_fetch_array($nb_total);
 $nb_total = $nb_total['nb_total'];
 // Pagination

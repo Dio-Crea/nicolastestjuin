@@ -16,7 +16,7 @@ require_once './includes/pagination.php';
         <title>Telepro-photos.fr</title>
     </head>
     <body>
-        <h1>Telepro-photos.fr</h1> 
+        <div id="h1">Telepro-photos.fr</div> 
         <?php
         require_once './includes/menu.php';
         ?>
