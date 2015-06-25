@@ -6,6 +6,7 @@ session_start();
 
 require_once './includes/connect.php';
 require_once './includes/fonctions.php';
+require_once './includes/pagination.php';
 ?>
 <!DOCTYPE html>
 <html>
