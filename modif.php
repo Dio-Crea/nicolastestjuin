@@ -10,7 +10,7 @@ if (!isset($_SESSION['sid']) || $_SESSION['sid'] != session_id()) {
 if(isset($_GET['id'])&&  ctype_digit($_GET['id'])){
     $idphoto = $_GET['id'];
 }else{
-   header("location: membre.php");
+   header("location: espaceclient.php");
 }
 
 // si on a envoyé le formulaire et qu'un fichier est bien attaché
@@ -36,7 +36,7 @@ if(isset($_POST['letitre'])){
                 }
             }
             }
-            header("Location: membre.php");
+            header("Location: espaceclient.php");
 }
 
 
@@ -45,7 +45,7 @@ $sql = "SELECT p.*, GROUP_CONCAT(r.id) AS idrub, GROUP_CONCAT(r.lintitule SEPARA
     FROM photo p
 	LEFT JOIN photo_has_rubriques h ON h.photo_id = p.id
     LEFT JOIN rubriques r ON h.rubriques_id = r.id
-        WHERE p.utilisateur_id = ".$_SESSION['id']." 
+        WHERE p.id = p.id
             AND p.id = $idphoto
         GROUP BY p.id
         ORDER BY p.id DESC;
@@ -75,21 +75,7 @@ $lenom=$utilisateur_assoc['lenom'];
     echo "<h3>Bonjour " .$lenom. "</h3>";
     echo "<p>Vous étes connecté en tant que <span title='" . $_SESSION['lenom'] . "'>" . $_SESSION['nom_perm'] . "</span></p>";
     echo "<h5><a href='./includes/deconnect.php'>Déconnexion</a></h5>";
-                        
-                       /* // liens  suivant la permission utilisateur
-                        switch($_SESSION['laperm']){
-                            // si on est l'admin
-                            case 0 :
-                               echo "<a href='admin.php'>Administrer le site</a> - <a href='membre.php'>Espace membre</a>";
-                                break;
-                            // si on est modérateur
-                            case 1:
-                                echo "<a href='modere.php'>Modérer le site</a> - <a href='membre.php'>Espace membre</a>";
-                                break;
-                            // si autre droit (ici simple utilisateur)
-                            default :
-                                echo "<a href='membre.php'>Espace membre</a>";
-                        }*/?></div>
+                      ?></div>
             </div>
              <div id="milieu">
                  <div id="formulaire">

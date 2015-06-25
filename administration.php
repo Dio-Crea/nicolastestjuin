@@ -64,11 +64,11 @@ $lenom=$utilisateur_assoc['lenom'];
             break;
         // si on est modérateur
         case 1:
-            echo "<a href='./moderation.php'>Modération</a> ";
+            echo "<a href='#'>Modération</a> ";
             break;
         // si autre droit (ici simple utilisateur)
         default :
-          
+            echo "<a href='membre.php'>Espace membre</a>";
     }
 
 
@@ -167,11 +167,12 @@ if(isset($_GET['delete'])&& ctype_digit($_GET['delete'])){
 
 
 // /* RETIRER LIGNE WHERE  POUR LA PAGE ACCUEIL*/rÃ©cupÃ©rations des images de l'utilisateur connectÃ© dans la table photo avec leurs sections mÃªme si il n'y a pas de sections sÃ©lectionnÃ©es (jointure externe avec LEFT)
-$sql = "SELECT p.*, GROUP_CONCAT(r.id) AS idrub, GROUP_CONCAT(r.lintitule SEPARATOR '|||' ) AS lintitule
+$sql = "SELECT p.*, u.lenom as ulenom, GROUP_CONCAT(r.id) AS idrub, GROUP_CONCAT(r.lintitule SEPARATOR '|||' ) AS lintitule 
     FROM photo p
 	LEFT JOIN photo_has_rubriques h ON h.photo_id = p.id
+         INNER JOIN utilisateur u ON u.id = p.utilisateur_id
     LEFT JOIN rubriques r ON h.rubriques_id = r.id
-        WHERE p.utilisateur_id = ".$_SESSION['id']." 
+
         GROUP BY p.id
         ORDER BY p.id DESC;
     ";
@@ -180,6 +181,11 @@ $recup_sql = mysqli_query($mysqli,$sql) or die(mysqli_error($mysqli));
 // rÃ©cupÃ©ration de toutes les rubriques pour le formulaire d'insertion
 $sql="SELECT * FROM rubriques ORDER BY lintitule ASC;";
 $recup_section = mysqli_query($mysqli, $sql);
+
+//$sql_util=  mysqli_query($mysqli,"SELECT u.id,u.lenom,p.* FROM utilisateur u LEFT JOIN photo p WHERE u.id = p.utilisateur_id");
+
+
+   
 ?>
 <!DOCTYPE html>
 <html>
@@ -216,6 +222,7 @@ $recup_section = mysqli_query($mysqli, $sql);
                  echo "<h4>".$ligne['letitre']."</h4>";
                  echo "<a href='".CHEMIN_RACINE.$dossier_gd.$ligne['lenom'].".jpg' target='_blank'><img src='".CHEMIN_RACINE.$dossier_mini.$ligne['lenom'].".jpg' alt='' /></a>";
                  echo "<p>".$ligne['ladesc']."<br /><br />";
+                  echo "<p>".$ligne['ulenom']."<br /><br />";
                  // affichage des sections
                  $sections = explode('|||',$ligne['lintitule']);
                  //$idsections = explode(',',$ligne['idrub']);

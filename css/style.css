@@ -36,3 +36,12 @@ body{
 #menu-deroulant li:hover ul {
     left: auto;
 }
+
+.miniatures{
+    border:1px dotted black;
+    margin: 5px;
+    width: 150px;
+    display:inline-block;
+    word-wrap:break-word;
+    vertical-align:top;
+}
