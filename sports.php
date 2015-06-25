@@ -1,16 +1,25 @@
 <?php
+
 require_once 'includes/header.php';
+?>
+<?php
+
+$select_query = mysqli_query($mysqli, "SELECT * FROM rubriques where id=6  ");
+$ligne = mysqli_fetch_assoc($select_query);
+echo " <div id='div_lintitule'>Telepro-photo.fr - " . $ligne['lintitule'] . "</div>";
+
+echo "<div></div>";
 
 ?>
 <?php 
 $select_query=mysqli_query($mysqli,"SELECT p.*, u.lenom as ulenom, GROUP_CONCAT(r.id) AS idrub, GROUP_CONCAT(r.lintitule SEPARATOR '|||' ) AS lintitule 
     FROM photo p
-	LEFT JOIN photo_has_rubriques h ON h.photo_id = p.id
-         INNER JOIN utilisateur u ON u.id = p.utilisateur_id
+    LEFT JOIN photo_has_rubriques h ON h.photo_id = p.id
+    INNER JOIN utilisateur u ON u.id = p.utilisateur_id
     LEFT JOIN rubriques r ON h.rubriques_id = r.id
-
-        GROUP BY p.id
-        ORDER BY p.id DESC
+    WHERE h.rubriques_id=6
+    GROUP BY p.id
+    ORDER BY p.id DESC
        LIMIT $limit_start, $pagination ;
     ")
 ?>
@@ -37,7 +46,14 @@ while($ligne = mysqli_fetch_assoc($select_query)){
    
 }
 
+$nb_total = mysqli_query($mysqli,"SELECT COUNT(*) AS nb_total FROM photo_has_rubriques where rubriques_id=6");
+$nb_total = mysqli_fetch_array($nb_total);
+$nb_total = $nb_total['nb_total'];
+
+// Pagination
+$nb_pages = ceil($nb_total / $pagination);
 echo "<div id='pagination'>" .'<p>Page :';
+
 		// Boucle sur les pages
 		for ($i = 1 ; $i <= $nb_pages ; $i++) {
 		if ($i == $page )
@@ -47,5 +63,6 @@ echo "<div id='pagination'>" .'<p>Page :';
 		}
 		echo ' </p>'."</div>";?>
 <?php
+
 require_once 'includes/footer.php';
 ?>

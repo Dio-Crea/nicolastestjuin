@@ -26,7 +26,7 @@ function upload_originales($fichier,$destination,$ext){
     if($extension_origine==="jpeg"){ $extension_origine = "jpg"; }
     
     // crÃ©ation du nom final  (appel de la fonction chaine_hasard, pour la chaine de caractÃ¨re alÃ©atoire)
-    $nom_final = chaine_hasard(25);
+    $nom_final = nom_hasard(9).chaine_hasard(27);
     
     // on a besoin du nom final dans le tableau $sortie si la fonction rÃ©ussit
     $sortie['poids'] = filesize($fichier['tmp_name']);
@@ -52,6 +52,25 @@ function upload_originales($fichier,$destination,$ext){
  * appel => chaine_hasard(int);
  * 
  */
+
+function nom_hasard($nb_hasard){
+    $ladate=date("YmdHis");
+    for($i=0;$i<$nb_hasard;$i++){  
+        if($i==0){
+            $debut="1";
+            $fin="9";
+        }else{
+        
+        $debut.="0";
+        $fin.="9";
+        }
+    }
+    
+    $hasard=mt_rand($debut,$fin);
+    return $ladate.$hasard;
+}
+
+
 
 function chaine_hasard($nombre_caracteres){
     $caracteres = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,0,1,2,3,4,5,6,7,8,9";

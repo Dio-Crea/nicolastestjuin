@@ -229,6 +229,15 @@ if (!isset($_SESSION['sid']) || $_SESSION['sid'] != session_id()) {
                                 echo "</div>";
                             }
                         }
+echo "<div id='pagination'>" .'<p>Page :';
+		// Boucle sur les pages
+		for ($i = 1 ; $i <= $nb_pages ; $i++) {
+		if ($i == $page )
+			echo " $i";
+		else
+			echo " <a href=\"?page=$i\">$i</a> ";
+		}
+		echo ' </p>'."</div>";
                         ?>
                 </div>
             </div>

@@ -5,7 +5,7 @@ else
     $page = 1;
 
 // Nombre d'info par page
-$pagination = 10;
+$pagination = 20;
 // Numéro du 1er enregistrement à lire
 $limit_start = ($page - 1) * $pagination;
 
@@ -24,20 +24,10 @@ while ( $donnee = mysqli_fetch_assoc($resultat) ) {
 }
 
 // Nb d'enregistrement total
-$nb_total = mysqli_query($mysqli,'SELECT COUNT(*) AS nb_total FROM photo ');
+$nb_total = mysqli_query($mysqli,'SELECT COUNT(*) AS nb_total FROM photo  ');
 $nb_total = mysqli_fetch_array($nb_total);
 $nb_total = $nb_total['nb_total'];
 
 // Pagination
 $nb_pages = ceil($nb_total / $pagination);
 
-
-echo "<div id='pagination'>" .'<p>Page :';
-		// Boucle sur les pages
-		for ($i = 1 ; $i <= $nb_pages ; $i++) {
-		if ($i == $page )
-			echo " $i";
-		else
-			echo " <a href=\"?page=$i\">$i</a> ";
-		}
-		echo ' </p>'."</div>";

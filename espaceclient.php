@@ -32,7 +32,8 @@ $sql = "SELECT p.lenom,p.lextension,p.letitre,p.ladesc, u.lelogin,u.lenom,
     LEFT JOIN photo_has_rubriques h ON h.photo_id = p.id
     LEFT JOIN rubriques r ON h.rubriques_id = r.id
     GROUP BY p.id
-    ORDER BY p.id DESC; 
+    ORDER BY p.id DESC
+    ; 
     ";
 $recup_sql = mysqli_query($mysqli, $sql) or die(mysqli_error($mysqli));
 
@@ -127,7 +128,7 @@ if(isset($_POST['letitre'])&&isset($_FILES['lefichier'])){
             }
             
         }else{
-            echo 'Erreur lors de la crÃ©ation des images redimenssionnÃ©es';
+            echo 'Erreur lors de la création des images redimenssionnÃ©es';
         }
         
     }    
@@ -173,7 +174,9 @@ $sql = "SELECT p.*, GROUP_CONCAT(r.id) AS idrub, GROUP_CONCAT(r.lintitule SEPARA
     LEFT JOIN rubriques r ON h.rubriques_id = r.id
         WHERE p.utilisateur_id = ".$_SESSION['id']." 
         GROUP BY p.id
-        ORDER BY p.id DESC;
+        ORDER BY p.id DESC
+        LIMIT $limit_start, $pagination;
+        
     ";
 $recup_sql = mysqli_query($mysqli,$sql) or die(mysqli_error($mysqli));
 
@@ -225,8 +228,26 @@ $recup_section = mysqli_query($mysqli, $sql);
                  echo"<br/><a href='modif.php?id=".$ligne['id']."'><img src='img/modifier.png' alt='modifier' /></a> <img onclick='supprime(".$ligne['id'].");' src='img/supprimer.png' alt='supprimer' />
                      </p>";
                  echo "</div>";
-               }
-              } ?>
+               }  //Nb d'enregistrement total
+$nb_total = mysqli_query($mysqli,'SELECT COUNT(*) AS nb_total FROM photo WHERE utilisateur_id=2 ');
+$nb_total = mysqli_fetch_array($nb_total);
+$nb_total = $nb_total['nb_total'];
+// Pagination
+$nb_pages = ceil($nb_total / $pagination);
+echo "<div id='pagination'>" .'<p>Page :';
+		// Boucle sur les pages
+		for ($i = 1 ; $i <= $nb_pages ; $i++) {
+		if ($i == $page )
+			echo " $i";
+		else
+			echo " <a href=\"?page=$i\">$i</a> ";
+		}
+		echo ' </p>'."</div>";
+              } 
+             
+              
+              
+              ?>
                  </div>
              </div>
             <div id="bas"></div>

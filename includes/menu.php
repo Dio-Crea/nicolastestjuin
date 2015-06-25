@@ -6,15 +6,15 @@
 
     <li>Catégories
         <ul>
-            <li><a href="#">Animaux</a></li>
-            <li><a href="#">Architectures</a></li>
-            <li><a href="#">Artistiques</a></li>
-            <li><a href="#">Personnes</a></li>
-            <li><a href="#">Paysages</a></li>
-            <li><a href="#">Sports</a></li>
-            <li><a href="#">Technologies</a></li>
-            <li><a href="#">Transports</a></li>
-            <li><a href="#">Divers</a></li>
+            <li><a href="./animaux.php">Animaux</a></li>
+            <li><a href="./architectures.php">Architectures</a></li>
+            <li><a href="./artistiques.php">Artistiques</a></li>
+            <li><a href="./personnes.php">Personnes</a></li>
+            <li><a href="./paysages.php">Paysages</a></li>
+            <li><a href="./sports.php">Sports</a></li>
+            <li><a href="./technologies.php">Technologies</a></li>
+            <li><a href="./transports.php">Transports</a></li>
+            <li><a href="./divers.php">Divers</a></li>
         </ul>
     </li>
     
