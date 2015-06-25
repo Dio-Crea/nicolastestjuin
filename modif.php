@@ -104,5 +104,4 @@ $lenom=$utilisateur_assoc['lenom'];
                     ?>
                 </form>
             </div>
-    </body>
-</html>
+

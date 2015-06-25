@@ -235,4 +235,5 @@ $recup_section = mysqli_query($mysqli, $sql);
 
 
 <?php
+
 require_once 'includes/footer.php';

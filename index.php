@@ -1,5 +1,6 @@
 <?php
 require_once 'includes/header.php';
+
 ?>
 <?php 
 $select_query=mysqli_query($mysqli,"SELECT p.*, u.lenom as ulenom, GROUP_CONCAT(r.id) AS idrub, GROUP_CONCAT(r.lintitule SEPARATOR '|||' ) AS lintitule 
@@ -9,7 +10,8 @@ $select_query=mysqli_query($mysqli,"SELECT p.*, u.lenom as ulenom, GROUP_CONCAT(
     LEFT JOIN rubriques r ON h.rubriques_id = r.id
 
         GROUP BY p.id
-        ORDER BY p.id DESC;
+        ORDER BY p.id DESC
+       LIMIT $limit_start, $pagination ;
     ")
 ?>
 <h2>Bienvenue sur Telepro-photos.fr</h2> 

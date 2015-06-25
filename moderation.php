@@ -174,7 +174,8 @@ $sql = "SELECT p.*, u.lenom as ulenom, GROUP_CONCAT(r.id) AS idrub, GROUP_CONCAT
     LEFT JOIN rubriques r ON h.rubriques_id = r.id
 
         GROUP BY p.id
-        ORDER BY p.id DESC;
+        ORDER BY p.id DESC
+        LIMIT $limit_start, $pagination;
     ";
 $recup_sql = mysqli_query($mysqli,$sql) or die(mysqli_error($mysqli));
 
