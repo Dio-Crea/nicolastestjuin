@@ -61,15 +61,15 @@ $lenom=$utilisateur_assoc['lenom'];
     switch ($_SESSION['laperm']) {
         // si on est l'admin
         case 0 :
-            echo "<a href='./administration.php'>Administration</a>";
+            echo "<a href='./administration.php'>Administration</a> - <a href='./espaceclient.php'>Retour</a> ";
             break;
         // si on est modérateur
         case 1:
-            echo "<a href='./moderation.php'>Modération</a> ";
+            echo "<a href='./moderation.php'>Modération</a> - <a href='./espaceclient.php'>Retour</a>  ";
             break;
         // si autre droit (ici simple utilisateur)
         default :
-          
+            echo "<a href='./espaceclient.php'>Espace membre</a>";
     }
 
 

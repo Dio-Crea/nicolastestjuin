@@ -2,8 +2,8 @@
 require_once 'includes/header.php';
 // si tentative de connexion
 if (isset($_POST['lelogin'])) {
-    $lelogin = $_POST['lelogin'];
-    $lemdp = $_POST['lepass'];
+    $lelogin = htmlspecialchars(strip_tags($_POST['lelogin'],ENT_QUOTES));
+    $lemdp = htmlspecialchars(strip_tags($_POST['lepass'],ENT_QUOTES));
 
     // vérification de l'utilisateur dans la db
     $sql = "SELECT  u.id, u.lemail, u.lenom,u.lepass, 
@@ -62,15 +62,15 @@ if (!isset($_SESSION['sid']) || $_SESSION['sid'] != session_id()) {
     switch ($_SESSION['laperm']) {
         // si on est l'admin
         case 0 :
-            echo "<a href='./administration.php'>Administration</a>";
+            echo "<a href='./administration.php'>Administration</a> - <a href='./espaceclient.php'>Retour</a> ";
             break;
         // si on est modérateur
         case 1:
-            echo "<a href='#'>Modération</a> ";
+            echo "<a href='./moderation.php'>Modération</a> - <a href='./espaceclient.php'>Retour</a>  ";
             break;
         // si autre droit (ici simple utilisateur)
         default :
-            echo "<a href='membre.php'>Espace membre</a>";
+            echo "<a href='./espaceclient.php'>Espace membre</a>";
     }
 
 
