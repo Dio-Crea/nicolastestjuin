@@ -215,7 +215,7 @@ if (!isset($_SESSION['sid']) || $_SESSION['sid'] != session_id()) {
                             while ($ligne = mysqli_fetch_assoc($recup_sql)) {
                                 echo "<div class='miniatures'>";
                                 echo "<h4>" . $ligne['letitre'] . "</h4>";
-                                echo "<a href='" . CHEMIN_RACINE . $dossier_gd . $ligne['lenom'] . ".jpg' target='_blank'><img src='" . CHEMIN_RACINE . $dossier_mini . $ligne['lenom'] . ".jpg' alt='' /></a>";
+                                echo "<a href='" . CHEMIN_RACINE . $dossier_gd . $ligne['lenom'] . ".jpg' data-lightbox='groupe'><img src='" . CHEMIN_RACINE . $dossier_mini . $ligne['lenom'] . ".jpg' alt='' /></a>";
                                 echo "<p>" . $ligne['ladesc'] . "<br /><br />";
                                 echo "<p>" . $ligne['ulenom'] . "<br /><br />";
                                 // affichage des sections

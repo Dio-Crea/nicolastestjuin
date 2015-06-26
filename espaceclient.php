@@ -1,9 +1,9 @@
 <?php
 require_once 'includes/header.php';
 // si tentative de connexion
-if (isset($_POST['lelogin'])) {
-    $lelogin = $_POST['lelogin'];
-    $lemdp = $_POST['lepass'];
+if (isset($_POST['lelogin'])&& isset($_POST['lepass'])){
+    $lelogin = htmlspecialchars(strip_tags($_POST['lelogin'],ENT_QUOTES));
+    $lemdp = htmlspecialchars(strip_tags($_POST['lepass'],ENT_QUOTES));
 
     // vérification de l'utilisateur dans la db
     $sql = "SELECT  u.id, u.lemail, u.lenom,u.lepass, 
@@ -22,6 +22,8 @@ if (isset($_POST['lelogin'])) {
         // var_dump($_SESSION);
         // redirection vers la page d'accueil (pour Ã©viter les doubles connexions par F5)
        
+    }else{
+        $erreur_connect = "Login ou mot de passe incorrecte";
     }
 }
 $sql = "SELECT p.lenom,p.lextension,p.letitre,p.ladesc, u.lelogin,u.lenom,
@@ -47,6 +49,10 @@ if (!isset($_SESSION['sid']) || $_SESSION['sid'] != session_id()) {
         <input type="submit" value="Connexion" />
     </form>
     <?php
+    
+                // si erreur on l'affiche
+                if(isset($erreur_connect)){ echo $erreur_connect;}
+               
     // sinon on est connecté
 } else {
 $utilisateur_query=  mysqli_query($mysqli, "SELECT * FROM utilisateur where id=$_SESSION[id]");
@@ -61,11 +67,11 @@ $lenom=$utilisateur_assoc['lenom'];
     switch ($_SESSION['laperm']) {
         // si on est l'admin
         case 0 :
-            echo "<a href='./administration.php'>Administration</a> - <a href='./espaceclient.php'>Retour</a> ";
+            echo "<a href='./administration.php'>Administration</a> ";
             break;
         // si on est modérateur
         case 1:
-            echo "<a href='./moderation.php'>Modération</a> - <a href='./espaceclient.php'>Retour</a>  ";
+            echo "<a href='./moderation.php'>Modération</a> ";
             break;
         // si autre droit (ici simple utilisateur)
         default :
@@ -180,7 +186,7 @@ $sql = "SELECT p.*, GROUP_CONCAT(r.id) AS idrub, GROUP_CONCAT(r.lintitule SEPARA
     ";
 $recup_sql = mysqli_query($mysqli,$sql) or die(mysqli_error($mysqli));
 
-// rÃ©cupÃ©ration de toutes les rubriques pour le formulaire d'insertion
+// récupération de toutes les rubriques pour le formulaire d'insertion
 $sql="SELECT * FROM rubriques ORDER BY lintitule ASC;";
 $recup_section = mysqli_query($mysqli, $sql);
 ?>
@@ -217,7 +223,7 @@ $recup_section = mysqli_query($mysqli, $sql);
                      while($ligne = mysqli_fetch_assoc($recup_sql)){
                  echo "<div class='miniatures'>";
                  echo "<h4>".$ligne['letitre']."</h4>";
-                 echo "<a href='".CHEMIN_RACINE.$dossier_gd.$ligne['lenom'].".jpg' target='_blank'><img src='".CHEMIN_RACINE.$dossier_mini.$ligne['lenom'].".jpg' alt='' /></a>";
+                 echo "<a href='".CHEMIN_RACINE.$dossier_gd.$ligne['lenom'].".jpg' data-lightbox='groupe'><img src='".CHEMIN_RACINE.$dossier_mini.$ligne['lenom'].".jpg' alt='' /></a>";
                  echo "<p>".$ligne['ladesc']."<br /><br />";
                  // affichage des sections
                  $sections = explode('|||',$ligne['lintitule']);

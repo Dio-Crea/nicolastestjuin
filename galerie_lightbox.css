@@ -1,0 +1,18 @@
+/* transformer une liste à puces pour afficher la série de vignettes */
+ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+/* afficher les vignettes les unes à coté des autres */
+ul li {
+	display:inline-block;
+}
+
+/* placer une bordure transparente autour des vignettes
+ et les positionner les unes par rapport aux autres */
+ul li img {
+	border:10px solid #DDD;
+	margin: 0px 0px 20px 4px;
+}
